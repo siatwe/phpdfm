@@ -1,0 +1,39 @@
+* PHPDFM
+** PHP .dotfile manager.
+   Actually only written for my own amusement and because I can really use it. I
+   know that there are enough dotfile managers already, but I really only need a
+   lightweight application. The configuration is done via a file named
+   config.ini in the root folder of the aadm directory. First the config.ini
+   must be adapted, here the exact paths to the dotfiles repository and the name
+   of the JSON file are given. Also the command to install packages:
+
+   For example
+
+*** config.ini
+    #+BEGIN_SRC ini
+[locations]
+dotfilesDir=~/.dotfiles
+json=files.json
+
+[executables]
+installation=sudo pacman -S --needed
+    #+END_SRC
+
+*** files.json
+    #+BEGIN_SRC json
+{
+  "ApplicationName": {
+    "requirements": [
+      "app1",
+      "app2",
+      "app3",
+    ],
+    "files": [
+      "/path/to/file/file.rc"
+    ],
+    "dirs": [
+      "/path/to/complete/dir"
+    ]
+  }
+}
+    #+END_SRC
