@@ -7,7 +7,7 @@
    must be adapted, here the exact paths to the dotfiles repository and the name
    of the JSON file are given. Also the command to install packages:
 
-   For example
+   For example:
 
 *** config.ini
     #+BEGIN_SRC ini
@@ -20,6 +20,8 @@ installation=sudo pacman -S --needed
     #+END_SRC
 
 *** files.json
+    The actual files and directories to be managed are specified in a JSON file in
+    the root of the dotfiles repository. This the syntax:
     #+BEGIN_SRC json
 {
   "ApplicationName": {
@@ -37,3 +39,68 @@ installation=sudo pacman -S --needed
   }
 }
     #+END_SRC
+    =requirements=: Which other applications does the program need to be executed correctly and desired?
+    =files=: Here you specify the exact path to a configuration file.
+    =dirs=: If complete folders are to be managed, the exact file path is specified here.
+
+*** Example files.json
+    #+BEGIN_SRC json
+{
+  "ApplicationName": {
+    "requirements": [
+      "app1",
+      "app2",
+      "app3",
+    ],
+    "files": [
+      "/path/to/file/file.rc"
+    ],
+    "dirs": [
+      "/path/to/complete/dir"
+    ]
+  }
+}
+    #+END_SRC
+    If the configuration files of the application do not have whole folders or
+    requirements, you can leave these fields empty.
+
+** Installation
+   The code of the application is completely written in PHP, there is no
+   binary executable file but a start script in the root directory. The name of the
+   start script is: phpdfm.php. This is an executable script. If this is not the case,
+   it can be made executable with:
+   =chmod a+x phpdfm.php=
+   The script can then theoretically be executed from any location. To use it
+   globally, you can use the following solution:
+   Create a script with the following content and any name:
+   #+BEGIN_SRC bash
+#! /bin/bash
+cd /path/to/phpdfm && php phpdfm.php $1
+   #+END_SRC
+   Save the file, make it executable and move it to =/usr/local/bin/fileName=:
+   #+BEGIN_SRC bash
+sudo chmod a+x phpdfm
+sudo mv phpdfm /usr/local/bin/phpdfm
+   #+END_SRC
+   
+** How to use?
+   Create a folder named .dotfiles in the home folder or the desired directory
+   given in the config.ini. Then execute:
+   =phpdfm=
+   or
+   =phpdfm update=
+   This command without arguments or the update argument copies all specified
+   configuration files and directories to the given dotfiles directory. A folder
+   will be created for each application.
+
+   To install the configuration files and directories, do the following:
+   =phpdfm install=
+   To install the configuration files and directories including all
+   requirements, execute the following command:
+   =phpdfm fresh=
+   The help message can be viewed with this command:
+   =phpdfm help=
+   
+** License
+   GNU General Public License, version 2 or later.
+
