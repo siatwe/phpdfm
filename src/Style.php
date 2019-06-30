@@ -9,6 +9,7 @@ class Style
     private static $magenta = 35;
     // Bash font style
     private static $bold = 1;
+
     public static function color($color, $string)
     {
         switch ($color) {
@@ -20,6 +21,7 @@ class Style
         default: return $string; break;
         }
     }
+
     public static function font($style, $string)
     {
         switch ($style) {
