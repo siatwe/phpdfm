@@ -1,4 +1,5 @@
 <?php
+
 class Style
 {
     // Bash color codes
@@ -7,6 +8,7 @@ class Style
     private static $yellow = 33;
     private static $blue = 34;
     private static $magenta = 35;
+
     // Bash font style
     private static $bold = 1;
 

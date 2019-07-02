@@ -2,13 +2,13 @@
 <?php
 $config = parse_ini_file('config.ini', true);
 
-include $config['locations']['aadm']."/src/Check.php";
-include $config['locations']['aadm']."/src/Create.php";
-include $config['locations']['aadm']."/src/Message.php";
-include $config['locations']['aadm']."/src/Execute.php";
+include $config['locations']['aadm'].'/src/Check.php';
+include $config['locations']['aadm'].'/src/Create.php';
+include $config['locations']['aadm'].'/src/Message.php';
+include $config['locations']['aadm'].'/src/Execute.php';
 
 $dotfileRepositoryDestination = $config['locations']['dotfilesDir'];
-$configFileDestination = $dotfileRepositoryDestination. '/'.$config['locations']['json'];
+$configFileDestination = $dotfileRepositoryDestination.'/'.$config['locations']['json'];
 
 $data = Create::arrayFromJson($configFileDestination);
 

@@ -1,0 +1,62 @@
+
+/home/siatwe/Projects/phpdfm/config.ini,303
+[locations]locations1,0
+aadm=/home/siatwe/Projects/phpdfmaadm2,12
+dotfilesDir=/home/siatwe/.dotfilesdotfilesDir3,46
+json=files.jsonjson4,81
+[executables]executables6,98
+installation=yay -S --neededinstallation7,112
+[remote]remote9,142
+git=https://www.github.io/siatwe/.dotfilesgit10,151
+
+/home/siatwe/Projects/phpdfm/phpdfm.php,349
+$config = parse_ini_file('config.ini', true);config3,18
+$dotfileRepositoryDestination = $config['locations']['dotfilesDir'];dotfileRepositoryDestination10,291
+$configFileDestination = $dotfileRepositoryDestination. '/'.$config['locations']['json'];configFileDestination11,360
+$data = Create::arrayFromJson($configFileDestination);data13,451
+
+/home/siatwe/Projects/phpdfm/src/Create.php,91
+class CreateCreate2,6
+    public static function arrayFromJson($file)arrayFromJson4,21
+
+/home/siatwe/Projects/phpdfm/src/Execute.php,968
+class ExecuteExecute2,6
+    public static function run($method, $dotfilesFolder, $data, $installExecutable)run4,22
+    private static function update($dotfilesFolder, $data)update14,513
+    private static function install($dotfilesFolder, $data, $installExecutable, $isFresh)install32,1197
+    private static function updateFile($destination, $dotfilesFolder, $appName)updateFile50,1933
+    private static function updateDir($destination, $dotfilesFolder, $appName)updateDir58,2267
+    private static function installFile($destination, $dotfilesFolder, $appName)installFile66,2609
+    private static function installDir($destination, $dotfilesFolder, $appName)installDir76,2992
+    private static function installRequirements($appName, $requirements, $installExecutable)installRequirements87,3459
+    private static function getConfigFileName($path)getConfigFileName98,3928
+    private static function gitUpdate($dotfilesFolder)gitUpdate102,4051
+
+/home/siatwe/Projects/phpdfm/src/Message.php,411
+class MessageMessage3,27
+    public static function invalidJson($wannaBeJson)invalidJson5,43
+    public function invalidArgument($wannaBeArgument)invalidArgument10,254
+    public function help()help15,457
+    public static function status($appName, $type, $method)status27,946
+    public static function infoInstallationCandidates($appName, $installationCanditates)infoInstallationCandidates31,1202
+
+/home/siatwe/Projects/phpdfm/src/Style.php,406
+class StyleStyle2,6
+    private static $red = 31;red5,44
+    private static $green = 32;green6,74
+    private static $yellow = 33;yellow7,106
+    private static $blue = 34;blue8,139
+    private static $magenta = 35;magenta9,170
+    private static $bold = 1;bold11,227
+    public static function color($color, $string)color13,258
+    public static function font($style, $string)font25,742
+
+/home/siatwe/Projects/phpdfm/src/Read.php,126
+class Read {Read3,7
+    public static function config($path)config5,21
+    public static function json($path)json10,113
+
+/home/siatwe/Projects/phpdfm/src/Check.php,152
+class CheckCheck2,6
+    public static function isJson($data)isJson4,20
+    public static function isValidArgument($argument)isValidArgument11,161

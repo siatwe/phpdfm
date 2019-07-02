@@ -1,4 +1,5 @@
 <?php
+
 class Execute
 {
     public static function run($method, $dotfilesFolder, $data, $installExecutable)
@@ -11,42 +12,45 @@ class Execute
         default: break;
         }
     }
+
     private static function update($dotfilesFolder, $data)
     {
         foreach ($data as  $appName => $managedApp) {
             system('mkdir -p '.$dotfilesFolder.'/'.$appName);
             foreach ($managedApp as $type => $destination) {
-                if ($type === 'requirements') {
+                if ('requirements' === $type) {
                     continue;
                 }
-                if ($type === 'files') {
+                if ('files' === $type) {
                     self::updateFile($destination, $dotfilesFolder, $appName);
                 }
-                if ($type === 'dirs') {
+                if ('dirs' === $type) {
                     self::updateDir($destination, $dotfilesFolder, $appName);
                 }
             }
         }
         self::gitUpdate($dotfilesFolder);
     }
+
     private static function install($dotfilesFolder, $data, $installExecutable, $isFresh)
     {
         foreach ($data as  $appName => $managedApp) {
             foreach ($managedApp as $type => $destination) {
-                if ($type === 'requirements') {
+                if ('requirements' === $type) {
                     if ($isFresh) {
                         self::installRequirements($appName, $destination, $installExecutable);
                     }
                 }
-                if ($type === 'files') {
+                if ('files' === $type) {
                     self::installFile($destination, $dotfilesFolder, $appName);
                 }
-                if ($type === 'dirs') {
+                if ('dirs' === $type) {
                     self::installDir($destination, $dotfilesFolder, $appName);
                 }
             }
         }
     }
+
     private static function updateFile($destination, $dotfilesFolder, $appName)
     {
         foreach ($destination as $path) {
@@ -55,6 +59,7 @@ class Execute
             Message::status($appName, 'file', 'updated');
         }
     }
+
     private static function updateDir($destination, $dotfilesFolder, $appName)
     {
         foreach ($destination as $dir) {
@@ -63,6 +68,7 @@ class Execute
             Message::status($appName, 'directory', 'updated');
         }
     }
+
     private static function installFile($destination, $dotfilesFolder, $appName)
     {
         foreach ($destination as $path) {
@@ -73,6 +79,7 @@ class Execute
             Message::status($appName, 'file', 'installed');
         }
     }
+
     private static function installDir($destination, $dotfilesFolder, $appName)
     {
         foreach ($destination as $dir) {
@@ -84,6 +91,7 @@ class Execute
             Message::status($appName, 'directory', 'installed');
         }
     }
+
     private static function installRequirements($appName, $requirements, $installExecutable)
     {
         $installationCandidates = '';
@@ -95,10 +103,12 @@ class Execute
             system($installExecutable.' '.$installationCandidates);
         }
     }
+
     private static function getConfigFileName($path)
     {
         return str_replace('/', '', strrchr($path, '/'));
     }
+
     private static function gitUpdate($dotfilesFolder)
     {
         $date = new DateTime();
