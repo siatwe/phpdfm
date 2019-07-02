@@ -108,6 +108,11 @@ sudo mv phpdfm /usr/local/bin/phpdfm
     =phpdfm help=
 
 
+** \TODO
+- Check if remote updates are necessary, if not => continue
+- Refactoring: Create Read class for initial loading config files
+- Create JSON config for loading a script before and after updating/installing
+- Add changed files to commit message
+- Simplifying Execute class methods
 ** License
    GNU General Public License, version 2 or later.
-
