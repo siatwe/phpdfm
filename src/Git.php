@@ -6,6 +6,7 @@ class Git
     {
         $date = new DateTime();
         $date = $date->format('Ymd-H:i');
-        system('cd '.$dotfilesFolder.' && git add . && git commit -m '.$date.' && git push');
+
+        System::vcsUpdate($dotfilesFolder, $date);
     }
 }

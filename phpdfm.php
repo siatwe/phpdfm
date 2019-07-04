@@ -7,6 +7,7 @@ include $config['locations']['aadm'].'/src/Create.php';
 include $config['locations']['aadm'].'/src/Message.php';
 include $config['locations']['aadm'].'/src/Execute.php';
 include $config['locations']['aadm'].'/src/Git.php';
+include $config['locations']['aadm'].'/src/System.php';
 
 $dotfileRepositoryDestination = $config['locations']['dotfilesDir'];
 $configFileDestination = $dotfileRepositoryDestination.'/'.$config['locations']['json'];
