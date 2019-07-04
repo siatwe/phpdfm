@@ -29,7 +29,7 @@ class Execute
                 }
             }
         }
-        Git::update($dofilesFolder);
+        Git::update($dotfilesFolder);
     }
 
     private static function install($dotfilesFolder, $data, $installExecutable, $isFresh)
