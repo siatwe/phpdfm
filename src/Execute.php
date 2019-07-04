@@ -29,7 +29,7 @@ class Execute
                 }
             }
         }
-        self::gitUpdate($dotfilesFolder);
+        Git::update($dofilesFolder);
     }
 
     private static function install($dotfilesFolder, $data, $installExecutable, $isFresh)
@@ -107,12 +107,5 @@ class Execute
     private static function getConfigFileName($path)
     {
         return str_replace('/', '', strrchr($path, '/'));
-    }
-
-    private static function gitUpdate($dotfilesFolder)
-    {
-        $date = new DateTime();
-        $date = $date->format('Ymd-H:i');
-        system('cd '.$dotfilesFolder.' && git add . && git commit -m '.$date.' && git push');
     }
 }
