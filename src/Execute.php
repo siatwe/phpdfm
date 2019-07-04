@@ -16,7 +16,8 @@ class Execute
     private static function update($dotfilesFolder, $data)
     {
         foreach ($data as  $appName => $managedApp) {
-            system('mkdir -p '.$dotfilesFolder.'/'.$appName);
+            System::mkdir('p', $dotfilesFolder.'/'.$appName);
+
             foreach ($managedApp as $type => $destination) {
                 if ('requirements' === $type) {
                     continue;
@@ -55,7 +56,9 @@ class Execute
     {
         foreach ($destination as $path) {
             $configFileName = self::getConfigFileName($path);
-            system('cp '.$path.' '.$dotfilesFolder.'/'.$appName.'/');
+
+            System::copy(null, $path, $dotfilesFolder.'/'.$appName.'/');
+
             Message::status($appName, 'file', 'updated');
         }
     }
@@ -64,7 +67,9 @@ class Execute
     {
         foreach ($destination as $dir) {
             $dirName = str_replace('/', '', strrchr($dir, '/'));
-            system('cp -r '.$dir.' '.$dotfilesFolder.'/'.$appName.'/');
+
+            System::copy('r', $dir, $dotfilesFolder.'/'.$appName.'/');
+
             Message::status($appName, 'directory', 'updated');
         }
     }
@@ -73,9 +78,9 @@ class Execute
     {
         foreach ($destination as $path) {
             $configFileName = self::getConfigFileName($path);
-            system(
-                'cp '.$dotfilesFolder.'/'.$appName.'/'.$configFileName.' '.$path
-            );
+
+            System::copy(null, $dotfilesFolder.'/'.$appName.'/'.$configFileName, $path);
+
             Message::status($appName, 'file', 'installed');
         }
     }
@@ -84,10 +89,11 @@ class Execute
     {
         foreach ($destination as $dir) {
             $dirName = str_replace('/', '', strrchr($dir, '/'));
+
             $dirDestination = preg_replace('/'.$dirName.'/', '', $dir);
-            system(
-                'cp -r '.$dotfilesFolder.'/'.$appName.'/'.$dirName.' '.$dirDestination
-            );
+
+            System::copy('r', $dotfilesFolder.'/'.$appName.'/'.$dirName, $dirDestination);
+
             Message::status($appName, 'directory', 'installed');
         }
     }
@@ -100,7 +106,8 @@ class Execute
         }
         if (!empty($installationCandidates)) {
             Message::infoInstallationCandidates($appName, $installationCandidates);
-            system($installExecutable.' '.$installationCandidates);
+
+            System::installPackages($installExecutable, $installationCandidates);
         }
     }
 
