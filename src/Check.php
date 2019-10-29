@@ -39,6 +39,7 @@ class Check
         if (filesize($fileA) === filesize($fileB) && md5_file($fileA) === md5_file($fileB)) {
             return true;
         }
+        return false;
     }
 
     // TODO: Test function

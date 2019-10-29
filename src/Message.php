@@ -9,13 +9,13 @@ class Message
         exit;
     }
 
-    public function invalidArgument($wannaBeArgument)
+    public static function invalidArgument($wannaBeArgument)
     {
         echo Style::font('bold', 'aadm: ').Style::color('red', 'Given  Argument ('.$wannaBeArgument.') is invalid!')."\nSee help for details.\n";
         exit;
     }
 
-    public function help()
+    public static function help()
     {
         echo
             "usage: aadm [options] (default without options: update)
