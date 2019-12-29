@@ -94,12 +94,15 @@ Install all dotfiles and package requirements.
 phpdfm help
 ```
 ## TODO
-- Check if remote updates are necessary, if not => continue
 - Check if dirs are identical before updating
 - Refactoring: Create Read class for initial loading config files
 - Create JSON config for loading a script before and after updating/installing
 - Add changed files to commit message
 - Simplifying Execute class methods
+- Creating example dotfiles repository
+
+## Links
+- [My dotfiles](https://github.com/siatwe/.dotfiles)
 
 ## License
    GNU General Public License, version 2 or later.
